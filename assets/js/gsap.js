@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (pillBox) {
             servicesTl.from(pillBox, {
                 y: 30,
-                opacity: 0,
+                opacity: 1,
                 duration: 0.5,
                 ease: defaultEase
             }, "-=0.3");

@@ -461,21 +461,124 @@ body {
 
 
 
-
-
-.carousel-wrapper {
-    padding: 30px 0px;
-   
+/* =============================
+   SERVICES SECTION - OWL CAROUSEL
+   ============================= */
+.services-section .services-intro {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #666;
 }
+
+.services-carousel {
+    padding: 30px 0;
+    max-width: 100%;
+}
+
+/* Owl Carousel Container Constraint */
+.services-section .owl-carousel .owl-stage-outer {
+    overflow: hidden;
+}
+
+/* Service Card - New Design matching image */
+.service-card {
+    background: transparent;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.service-img-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.service-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-img {
+    transform: scale(1.05);
+}
+
+/* Arrow button on image - matching reference design */
+.service-arrow-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #d4e7d4, #e8f0e8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2d5a2d;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.service-arrow-btn i {
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+}
+
+.service-arrow-btn:hover {
+    background: linear-gradient(135deg, var(--gold-orange), #ffb347);
+    color: white;
+    transform: scale(1.08);
+}
+
+.service-arrow-btn:hover i {
+    transform: rotate(0deg);
+}
+
+/* Service Content */
+.service-content {
+    padding: 0 5px;
+}
+
+.service-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-orange);
+    margin-bottom: 8px;
+}
+
+.service-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Custom Navigation Pill Box */
+.custom-carousel-section {
+    margin-top: 20px;
+}
+
 .custom-pill-box {
     margin-top: 10px;
-    border: 1px solid var(--gold-orange);
+    border: 2px solid var(--gold-orange);
     border-radius: 50px;
-    padding: 8px 18px;      /* reduced height + tighter spacing */
+    padding: 10px 20px;
     display: flex;
     gap: 14px;
-    background: transparent; /* no background */
+    background: transparent;
     width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.custom-pill-box:hover {
+    background: rgba(242, 141, 24, 0.05);
 }
 
 .custom-pill-text {
@@ -495,94 +598,56 @@ body {
 
 /* Arrow buttons */
 .carousel-btn {
-   
     background: var(--gold-orange);
     color: #fff;
-    border: 1px solid var(--gold-orange);
-    padding: 4px 8px;             /* smaller padding */
+    border: 2px solid var(--gold-orange);
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 11px;
-    transition: 0.3s ease;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-btn:hover {
-     background: transparent;      /* transparent button */
-    color: var(--gold-orange);
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: #fff;
+    transform: scale(1.1);
 }
 
 /* Arrow wrapper */
 .pill-arrows {
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
-
-/* Slider layout */
-.carousel-wrapper {
-    overflow: hidden;
-    width: 100%;
-}
-
-.carousel-track {
-    display: flex;
-    gap: 20px;
-    transition: transform 0.4s ease;
-    justify-content: center;
-}
-
-/* Each card width (3 per row on desktop) */
-.carousel-card {
-    min-width: calc(33.333% - 15px);
-}
-
-/* Responsive card sizes */
+/* Responsive adjustments */
 @media (max-width: 992px) {
-    .carousel-card {
-        min-width: calc(50% - 15px);
+    .service-img {
+        height: 180px;
+    }
+    .service-title {
+        font-size: 17px;
     }
 }
+
 @media (max-width: 576px) {
-    .carousel-card {
-        min-width: 100%;
+    .service-img {
+        height: 160px;
     }
-}
-
-/* Card design */
-.service-card {
-    background: white;
-    padding: 25px;
-    border-radius: 22px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* background-color: var(--bg-paper); */
-}
-
-.service-icon {
-    color: var(--gold-orange);
-    width: 45px;
-    margin-bottom: 10px;
-    font-size: 30px;
-}
-.service-top h4 {
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-.service-img {
-    width: 100%;
-    height: 180px;
-    border-radius: 18px;
-    object-fit: cover;
-}
-.service-bottom p {
-    font-size: 14px;
-    color: #6c7a89;
-}
-.service-bottom {
-    text-align: center;
-}
-.service-card:hover {
-    transform: translateY(-10px);
-    background: linear-gradient(130deg, rgb(255, 255, 255), rgb(251, 223, 170));
+    .custom-pill-box {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 10px;
+    }
+    .custom-pill-text {
+        font-size: 14px;
+    }
 }
 
 
@@ -654,12 +719,12 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, 
+    /* background: radial-gradient(circle at 30% 30%, 
         rgba(255,255,255,0.9), 
         rgba(230,230,230,0.7) 40%, 
         rgba(200,200,200,0.55) 70%, 
         rgba(150,150,150,0.45)
-    );
+    ); */
     box-shadow:
         inset 0 5px 12px rgba(255,255,255,0.9),
         inset 0 -5px 12px rgba(0,0,0,0.15),
@@ -691,7 +756,7 @@ body {
 .counter-number {
     font-size: 3rem;
     font-weight: 800;
-    color: #000;
+    color: #e6e6e6d7;
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
