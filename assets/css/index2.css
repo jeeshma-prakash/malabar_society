@@ -1433,10 +1433,13 @@ body {
 .footer-logo {
     display: inline-block;
     margin-bottom: 15px;
+   
 }
 
 .footer-logo img {
     transition: transform 0.3s ease;
+    width: 200px;
+    height: 30px;
 }
 
 .footer-logo:hover img {
