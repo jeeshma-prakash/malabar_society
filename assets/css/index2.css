@@ -786,9 +786,16 @@ body {
     background: linear-gradient(to top, #ec942f, #e34420ea);
     border-radius: 16px;
     padding: 30px 30px;
+    overflow: visible;
     /* width: 70%; */
-
 }
+
+.cards-capsule {
+    margin-bottom: -80px; /* Cards extend below the gradient box */
+    height: 220px; /* Fixed height - no resize on hover */
+    overflow: visible;
+}
+
 .whychoose-text {
     margin-bottom: 60px;
 }
@@ -798,7 +805,8 @@ body {
     display: flex;
     flex-direction: row;
     gap: 18px;
-    margin-bottom: -100px;
+    align-items: stretch;
+    height: 100%;
 }
 
 @media screen and (max-width: 990px) {
@@ -814,16 +822,26 @@ body {
     display: flex;
     flex-direction: column;
     gap: 18px;
-    /* margin-bottom: -100px; */
+    height: auto;
 }
+
+   .cards-capsule {
+       margin-bottom: -60px;
+       height: auto;
+   }
 }
  /* Single card styles (collapsed + expanded behavior) */
 
     .why-card {
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  background-color 0.35s ease,
-                  box-shadow 0.35s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  background-color 0.4s ease-out,
+                  box-shadow 0.4s ease-out;
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     .why-card .top {
@@ -859,12 +877,9 @@ body {
       line-height:1.5;
       margin-top:6px;
       opacity:0;
-      transform: translateY(-12px);
-      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      max-height: 0;
-      overflow: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                  transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       width:100%;
     }
 
@@ -872,34 +887,36 @@ body {
     /* expanded state */
     .why-card.expanded {
     background-color: #fff;
-    box-shadow: var(--lift-shadow);
-    transform: scale(1.02);
-    min-height: 170px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     padding: 20px 18px;
     z-index: 5;
     border-radius: 18px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    flex: 1.5;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    height: fit-content;
 }
     .why-card.expanded .card-desc {
       opacity:1;
       transform: translateY(0);
-      max-height: 400px; /* large enough for content */
     }
     .why-card.expanded .icon-wrap {
       transform: translateY(-2px);
       background: transparent;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* collapsed-small visual */
     .why-card.collapsed {
       background: transparent;
       box-shadow: none;
-      min-height: 92px;
       padding: 10px 12px;
-      transform: none;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      flex: 1;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .why-card.collapsed .card-desc {
+      position: absolute;
+      visibility: hidden;
     }
 
 
@@ -970,6 +987,7 @@ body {
         overflow: hidden;
         padding: 0;
         background: transparent;
+         z-index: 11;
     }
 
     .vi-visual img {
