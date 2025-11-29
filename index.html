@@ -667,7 +667,7 @@
         <div class="contact-form-wrapper">
           <h2 class="contact-title">CONTACT US</h2>
           
-          <form class="contact-form">
+          <form id="contactForm" class="contact-form">
             <div class="form-group">
               <label class="form-label">NAME</label>
               <input type="text" class="form-control contact-input" placeholder="Your name">
@@ -692,13 +692,14 @@
             <button type="submit" class="btn btn-contact-submit">
               <i class="fa-solid fa-paper-plane"></i> Send Message
             </button>
+            <div class="contact-success-toast" id="contactToast" role="status" aria-live="polite">Message sent ✓</div>
           </form>
         </div>
       </div>
       
       <!-- Right: Map -->
       <div class="col-lg-5">
-        <div class="contact-map-wrapper">
+  <div class="contact-map-wrapper">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.452936502964!2d75.66871107487583!3d11.980703388250967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba435a9b78f1381%3A0x9573a9551dfefd9b!2sMALABAR%20MULTI%20STATE%20AGRO%20CO-OPERATIVE%20SOCIETY%20IRITTY!5e1!3m2!1sen!2sin!4v1764331543316!5m2!1sen!2sin"
             width="100%" 
@@ -708,6 +709,37 @@
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
+          <div class="contact-info-card" id="mapContactCard" role="complementary" aria-label="Contact information card">
+            <div class="info-head">
+              <span class="online-badge" aria-hidden="true"></span>
+              <strong>Get in touch</strong>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <div>
+                <small>Visit</small>
+                <div>Malabar Road, Iritty</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              <div>
+                <small>Call</small>
+                <div><a href="tel:+911234567890">+91 123 456 7890</a></div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <div>
+                <small>Email</small>
+                <div><a href="mailto:info@malabarcooperative.com">info@malabarcooperative.com</a></div>
+              </div>
+            </div>
+            <div class="info-actions">
+              <a href="#" class="btn btn-outline-orange">Directions</a>
+              <a href="contact.html" class="btn btn-primary-red">Contact Page</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -725,6 +757,41 @@
       charCount.textContent = remaining;
     });
   }
+</script>
+
+<script>
+  // Contact form submit animation + toast
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const toast = document.getElementById('contactToast');
+    const mapCard = document.getElementById('mapContactCard');
+
+    // Show the contact card overlay with a small delay (subtle entrance)
+    if(mapCard) {
+      setTimeout(() => mapCard.classList.add('visible'), 450);
+    }
+
+    if(!form || !toast) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // show toast
+      toast.classList.add('show');
+      // small GSAP pop for more flair if available
+      if(window.gsap) {
+        gsap.fromTo(toast, {scale: 0.85, opacity:0}, {scale:1, opacity:1, duration:0.45, ease: 'back.out(1.2)'});
+      }
+
+      // reset the form fields after a short delay to feel responsive
+      setTimeout(() => {
+        toast.classList.remove('show');
+        form.reset();
+        // reset character counter
+        const cc = document.getElementById('charCount');
+        if(cc) cc.textContent = '250';
+      }, 2100);
+    });
+  });
 </script>
 
 

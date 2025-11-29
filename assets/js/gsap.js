@@ -568,6 +568,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }, "-=0.8");
         }
 
+        // Map overlay card animation
+        const mapContactCard = contactSection.querySelector('.contact-info-card');
+        if(mapContactCard){
+            contactTl.from(mapContactCard, {
+                x: 40,
+                opacity: 0,
+                duration: 0.6,
+                ease: defaultEase
+            }, "-=0.6");
+        }
+
         createScrollAnimation(contactSection, contactTl);
     }
 
